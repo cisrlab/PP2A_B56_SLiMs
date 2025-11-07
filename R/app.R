@@ -9,6 +9,20 @@
 
 library(shiny)
 
+have_meme<-function() {
+    message("have_meme")
+    ans <- tryCatch(
+        file.exists(itcpredictr:::meme$getBin("fimo")),
+        error = function(e) {FALSE},
+        silent = TRUE
+    )
+    message(ans)
+    return(ans)
+}
+
+
+
+
 #' Run itcpredictapp
 #'
 #' @param ...
@@ -18,6 +32,9 @@ library(shiny)
 #'
 #' @examples
 itcpredictApp <- function(...) {
+
+
+
 
   # Define UI for application that draws a histogram
   ui <- fluidPage(
@@ -153,10 +170,6 @@ submitClicked<-function(input,...) {
 
 }
 
-
-have_meme<-function() {
-    return(file.exists(itcpredictr:::meme$getBin("fimo")))
-}
 
 # Define server logic required to allow submission
 server <- function(input, output) {
