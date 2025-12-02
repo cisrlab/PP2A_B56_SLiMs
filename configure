@@ -48,6 +48,7 @@ else
   # Use xslt-config if available
   xslt-config --version >/dev/null 2>&1
   if [ $? -eq 0 ]; then 
+    echo "XLST!!!!"
     PKGCONFIG_CFLAGS2=`xslt-config --cflags`
     PKGCONFIG_CFLAGS="$PKGCONFIG_CFLAGS $PKGCONFIG_CFLAGS2"
     PKGCONFIG_LIBS2=`xslt-config --libs`
