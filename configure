@@ -55,7 +55,7 @@ else
     PKGCONFIG_LIBS="$PKGCONFIG_LIBS $PKGCONFIG_LIBS2"
   else
     pkg-config --version >/dev/null 2>&1
-    if [ $? -eq 0]; then
+    if [ $? -eq 0 ]; then
       echo "xslt pkgconfig!!!"
       PKGCONFIG_CFLAGS2=`pkg-config --cflags libxslt`
       PKGCONFIG_CFLAGS="$PKDCONFIG_CFLAGS $PKGCONFIG_CFLAGS2"
