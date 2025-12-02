@@ -22,12 +22,15 @@ else
   # Use xml2-config if available
   xml2-config --version >/dev/null 2>&1
   if [ $? -eq 0 ]; then
+    echo "xml2!!!!!"
     PKGCONFIG_CFLAGS=`xml2-config --cflags`
     PKGCONFIG_LIBS=`xml2-config --libs`
-
+    echo $PKGCONFIG_CFLAGS
+    echo $PKGCONFIG_LIBS
     # Avoid shared libxml2 on MacOS because this reveals bugs in R.app
     # https://github.com/r-lib/xml2/issues/471
     if [ `uname` = "Darwin" ] && echo "${PKGCONFIG_CFLAGS}" | grep -sq "/usr/include$"; then
+      echo "*"
       unset PKGCONFIG_CFLAGS
       unset PKGCONFIG_LIBS
       curl -sfL "https://autobrew.github.io/scripts/libxml2" > autobrew
@@ -42,11 +45,23 @@ else
     fi
   fi
 
+  # Use xslt-config if available
+  xslt-config --version >/dev/null 2>&1
+  if [ $? -eq 0 ]; then 
+    PKGCONFIG_CFLAGS2=`xslt-config --cflags`
+    PKGCONFIG_CFLAGS="$PKGCONFIG_CFLAGS $PKGCONFIG_CFLAGS2"
+    PKGCONFIG_LIBS2=`xslt-config --libs`
+    PKGCONFIG_LIBS="$PKGCONFIG_LIBS $PKGCONFIG_LIBS2"
+  fi
+
+  
   if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
     echo "Found pkg-config cflags and libs!"
-    PKG_CFLAGS=${PKGCONFIG_CFLAGS}
+    PKG_CFLAGS=`echo ${PKGCONFIG_CFLAGS} | tr ' ' '\n' | sort | uniq`
+    PKG_LIBS=`echo ${PKGCONFIG_LIBS} | tr ' ' '\n' | sort | uniq`
     PKG_LIBS=${PKGCONFIG_LIBS}
   fi
+
 fi
 
 # Find compiler
