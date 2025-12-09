@@ -401,11 +401,23 @@ getTrainTestFxn2<-function(train_test_fxn, feature_select = "all") {
         return(
             function(train_data, test_data, class_name, feature_names, ...) {
                 fn = unique(c(feature_names[grep("esm2", feature_names, invert=TRUE)]))
+                fn <- fn[fn != "Substrate"]
                 res = train_test_fxn(train_data, test_data, class_name, fn, ...)
                 return(res)
             }
         )
 
+    }
+    if (feature_select == "all_no_meme_no_esm2") {
+        return(
+            function(train_data, test_data, class_name, feature_names, ...) {
+              fn <- feature_names[grep("esm2", feature_names, invert=TRUE)]
+              fn <- fn[fn != "Substrate"]
+              fn <- fn[fn != "Clip_meme_Ba"]
+              res <- train_test_fxn(train_data, test_data, class_name, unique(fn), ...)
+              return(res)
+            }
+        )
     }
     if (feature_select == "zpep") {
         return(
@@ -601,8 +613,17 @@ getITCFeatures<-function(res, fn) {
     } else if (res$FeatureSelect[1] == "rfs_mperr"){
         tt.res = attr(res, "tt.res")
         itc_features = tt.res$forward.model$selected.features;
-    }
-    else {
+    } else if (res$FeatureSelect[1] == "esm2") {
+        itc_features = unique(c(fn[grep("esm2", fn, invert=FALSE)]))
+    } else if (res$FeatureSelect[1] == "all_no_esm2") {
+        itc_features = unique(c(fn[grep("esm2", fn, invert=TRUE)]))
+        itc_features <- itc_features[itc_features != "Substrate"]
+    } else if (res$FeatureSelect[1] == "all_no_meme_no_esm2") {
+        itc_features <- fn[fn != "Substrate"]
+        itc_features <- itc_features[grep("esm2", itc_features, invert=TRUE)]
+        itc_features <- itc_features[itc_features != "Clip_meme_Ba"]
+        itc_features <- unique(itc_features)
+    } else {
         stop("Unknown feature set:", res$FeatureSelect[1]);
     }
     return(itc_features);
