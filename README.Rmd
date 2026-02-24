@@ -1,5 +1,5 @@
 ---
-title: "itcpredictr readme"
+title: "PP2A_B56_SLiMs readme"
 output: 
     github_document:
         toc: true
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# itcpredictr
+# PP2A_B56_SLiMs
 
 ## INSTALLATION
 
@@ -51,15 +51,15 @@ BiocManager::install(“GenomicAlignments”)
 install.packages(“devtools”) 
 ```
 
--- install itcpredictr by first expanding the tar.gz file. Then use devtools to install
+-- install PP2A_B56_SLiMs by using devtools
 
 ``` r
-devtools::install(“itcpredictr-main/itcpredictr-main/”) 
+devtools::install_github(“cisrlab/PP2A_B56_SLiMs”) 
 ```
 
 ### MEME Suite
 
-The *itcpredictr* package makes calls to the 
+The *PP2A_B56_SLiMs* package makes calls to the 
 [MEME Suite](https://meme-suite.org/meme/) on the command-line 
 to provide the most accurate predictions.  You can look at the
 [installation](https://meme-suite.org/meme/doc/install.html?man_type=web) 
@@ -100,7 +100,7 @@ make install
 ```
 #### WINDOWS
 
-Currently itcpredictr can use the meme suite built using 
+Currently PP2A_B56_SLiMs can use the meme suite built using 
 [Cygwin](https://www.cygwin.com/)
 
 Install [Cygwin](https://www.cygwin.com/) with packages:
@@ -136,7 +136,7 @@ make install
 
 ## Usage
 
-The *itcpredictr* package contains the *getITC_2024_0_27_cv()* call that
+The *PP2A_B56_SLiMs* package contains the *getITC_2024_0_27_cv()* call that
 makes the prediction of itc given an extended amino acid sequence.  Within
 the amino acid sequence, dots (\\.) can separate the motif sequence from the 
 full sequence. Phosporylation sites can be indicates with a (pS) or (sP) to 
@@ -144,7 +144,7 @@ indicate whether the phosporylation site was shown to be reflective of an D
 or E within the amino acid sequence.
 
 ```{r}
-suppressPackageStartupMessages(library(itcpredictr)) 
+suppressPackageStartupMessages(library(PP2A_B56_SLiMs)) 
 suppressPackageStartupMessages(getITC_2024_06_27_cv("LDTLRETQE")) 
 getITC_2024_06_27_cv("K.L(pS)PIIED(pS)") 
 ```
