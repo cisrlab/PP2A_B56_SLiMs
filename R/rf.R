@@ -202,6 +202,7 @@ rForestTrain<-function(train_data, class_name, feature_names,
   importance=FALSE,
   na.action = randomForest::na.roughfix,
   debug=FALSE,
+  seed = 1003,
   pans = list()
   ) {
    ans = pans;
@@ -224,10 +225,10 @@ rForestTrain<-function(train_data, class_name, feature_names,
    if (!regression) {
      class_values = factor(class_values)
    }
-
   if (tune) {
     ans$tune.vars = rForestTune(train_data, class_name, feature_names, tune.nfold);
     print(head(ans$tune.vars))
+    set.seed(seed)
     ans$model = randomForest(class_values ~.,
       data=train_data[,feature_names],
       ntree=ans$tune.vars$ntree[1],
@@ -237,6 +238,7 @@ rForestTrain<-function(train_data, class_name, feature_names,
 
       );
   } else {
+    set.seed(seed)
     ans$model = randomForest(class_values ~.,
       data=train_data[,feature_names],
       ntree=ntree,

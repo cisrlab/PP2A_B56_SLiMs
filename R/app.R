@@ -31,6 +31,7 @@ have_meme<-function() {
 #' @export
 #'
 #' @examples
+#' @import shiny
 itcpredictApp <- function(...) {
 
 
@@ -161,7 +162,7 @@ submitClicked<-function(input,...) {
   message("submit clicked")
   RV$status <- "Processing..."
   sequences <- parseSequences(input$sequences)
-  predictions <- PP2A.B56.SLiMs::getITC_2024_06_27_cv(sequences)
+  predictions <- PP2A.B56.SLiMs::getITC_2024_06_27_cv(sequences, enforce_6E = TRUE)
 
   RV$data <- data.frame(
       Sequence = sequences,
