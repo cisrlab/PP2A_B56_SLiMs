@@ -84,9 +84,9 @@ getPosMemeFeatures<-function(Sequences) {
 
   meme_Ba = rep(0, length(Sequences));
 
-  balpha_w8_path = system.file("extdata", "balpha_w8.xml", package="itcpredictr");
-  balpha_w7_path = system.file("extdata", "balpha_w7.xml", package="itcpredictr");
-  balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="itcpredictr");
+  balpha_w8_path = system.file("extdata", "balpha_w8.xml", package="PP2A.B56.SLiMs");
+  balpha_w7_path = system.file("extdata", "balpha_w7.xml", package="PP2A.B56.SLiMs");
+  balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="PP2A.B56.SLiMs");
 
   for (idx in 1:length(Sequences)) {
     ba_fimo = meme$fimo(seq=Sequences[idx], meme_xml=balpha_w6_path, thresh=1.0, no_qvalue = TRUE);
@@ -156,12 +156,12 @@ getPosMemeFeatures2 <-function (Sequences, max.pos = 9, debug=FALSE)
     motif_features = NULL
     meme_Ba = rep(0, length(Sequences))
     balpha_w8_path = system.file("extdata", "balpha_w8.xml",
-        package = "itcpredictr")
+        package = "PP2A.B56.SLiMs")
 
     balpha_w7_path = system.file("extdata", "balpha_w7.xml",
-      package = "itcpredictr")
+      package = "PP2A.B56.SLiMs")
 
-    balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="itcpredictr");
+    balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="PP2A.B56.SLiMs");
 
     for (idx in 1:length(Sequences)) {
       #if (debug) {cat(idx, " ",Sequences[idx],"\n")}
@@ -431,10 +431,10 @@ getITC<-function(sequences, model2=TRUE) {
   new_fs <- getFS(sequences)
 
   if (model2) {
-    itc.path = system.file("extdata", "litc.model2.RData", package="itcpredictr");
+    itc.path = system.file("extdata", "litc.model2.RData", package="PP2A.B56.SLiMs");
 
   } else {
-    itc.path = system.file("extdata", "litc.model.RData", package="itcpredictr");
+    itc.path = system.file("extdata", "litc.model.RData", package="PP2A.B56.SLiMs");
   }
   return(getITCByPath(sequences, itc.path))
 
@@ -453,13 +453,13 @@ getITC_2024_06_27_cv <- function(sequences, enforce_6E = FALSE, debug=FALSE) {
     itc.path <- system.file(
         "extdata",
         "res_tr.m107_rem1_95_all_rfsrc_log.2024_06_27_cv.model.RData",
-        package="itcpredictr"
+        package="PP2A.B56.SLiMs"
     )
     return(getITCByPath2(sequences = sequences, itc.path = itc.path, debug = debug, enforce_6E = enforce_6E))
 }
 
 
-getITCHasValue<-function(sequences, itc.path = system.file("extdata", "litc.hasvalue.model.RData", package="itcpredictr")) {
+getITCHasValue<-function(sequences, itc.path = system.file("extdata", "litc.hasvalue.model.RData", package="PP2A.B56.SLiMs")) {
   new_fs = getFS(sequences);
   load(itc.path);
   library(randomForest)
@@ -610,13 +610,13 @@ getFS2b<-function(sequences) {
 
   full_sequences = getFullSequence(sequences, remove_dots=TRUE)
 
-  fs_full <- itcpredictr:::getFS(full_sequences)
+  fs_full <- PP2A.B56.SLiMs:::getFS(full_sequences)
   colnames(fs_full) = paste0("Full_", colnames(fs_full));
 
   clip_sequences = getClipSequence(sequences);
 
 
-  fs_clip = itcpredictr::getFS(clip_sequences);
+  fs_clip = PP2A.B56.SLiMs::getFS(clip_sequences);
   colnames(fs_clip) = paste0("Clip_", colnames(fs_clip));
 
   fs = cbind(fs_clip,

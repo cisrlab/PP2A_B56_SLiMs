@@ -9,7 +9,7 @@
 #'
 #' @noRd
 app_sys <- function(...) {
-  system.file(..., package = "itcpredictr")
+  system.file(..., package = "PP2A.B56.SLiMs")
 }
 
 

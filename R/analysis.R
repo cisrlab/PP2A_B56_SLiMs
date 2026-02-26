@@ -211,7 +211,7 @@ getTrainTestFxn<-function(regression_algorithm, transform_alg="none") {
     }
 
     if (regression_algorithm == "glmnet_v2") {
-        return(itcpredictr::glmNetTrainTestReg2)
+        return(PP2A.B56.SLiMs::glmNetTrainTestReg2)
     }
     if (regression_algorithm == "glmnet_wp") {
         return(
