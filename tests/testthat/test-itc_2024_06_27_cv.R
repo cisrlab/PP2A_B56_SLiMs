@@ -5,7 +5,7 @@ test_that("2024_06_27_cv works", {
     itc.path <- system.file(
         "extdata",
         "res_tr.m107_rem1_95_all_rfsrc_log.2024_06_27_cv.model.RData",
-        package="itcpredictr"
+        package="PP2A.B56.SLiMs"
     )
     vars <- load(itc.path)
 

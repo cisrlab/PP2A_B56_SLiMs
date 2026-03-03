@@ -3,9 +3,9 @@ getMemeFeatures<-function(Sequences, use_internal=!have_ext_fimo(), debug=FALSE)
     meme_Ba = rep(0, length(Sequences))
     meme_Ba_idx = rep(-1, length(Sequences))
 
-    balpha_w8_path = system.file("extdata", "balpha_w8.xml", package="itcpredictr");
-    balpha_w7_path = system.file("extdata", "balpha_w7.xml", package="itcpredictr");
-    balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="itcpredictr");
+    balpha_w8_path = system.file("extdata", "balpha_w8.xml", package="PP2A.B56.SLiMs");
+    balpha_w7_path = system.file("extdata", "balpha_w7.xml", package="PP2A.B56.SLiMs");
+    balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="PP2A.B56.SLiMs");
 
     for (idx in 1:length(Sequences)) {
         ba_fimo = try(

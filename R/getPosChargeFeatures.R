@@ -15,9 +15,9 @@ getPosChargeFeatures<-function(Sequences, min.width = 9, debug=FALSE) {
 
     meme_Ba = rep(0, length(Sequences));
 
-    balpha_w8_path = system.file("extdata", "balpha_w8.xml", package="itcpredictr");
-    balpha_w7_path = system.file("extdata", "balpha_w7.xml", package="itcpredictr");
-    balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="itcpredictr");
+    balpha_w8_path = system.file("extdata", "balpha_w8.xml", package="PP2A.B56.SLiMs");
+    balpha_w7_path = system.file("extdata", "balpha_w7.xml", package="PP2A.B56.SLiMs");
+    balpha_w6_path = system.file("extdata", "balpha_w6.xml", package="PP2A.B56.SLiMs");
 
 
 

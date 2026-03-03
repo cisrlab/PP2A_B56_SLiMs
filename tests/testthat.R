@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(itcpredictr)
+library(PP2A.B56.SLiMs)
 
-test_check("itcpredictr")
+test_check("PP2A.B56.SLiMs")

@@ -9,6 +9,18 @@
 
 library(shiny)
 
+have_meme<-function() {
+    message("have_meme")
+    ans <- tryCatch(
+        file.exists(PP2A.B56.SLiMs:::meme$getBin("fimo")),
+        error = function(e) {FALSE},
+        silent = TRUE
+    )
+    message(ans)
+    return(ans)
+}
+
+
 #' Run itcpredictapp
 #'
 #' @param ...
@@ -145,7 +157,8 @@ submitClicked<-function(input,...) {
   message("submit clicked")
   RV$status <- "Processing..."
   sequences <- parseSequences(input$sequences)
-  predictions <- itcpredictr::getITC_2024_06_27_cv(sequences, enforce_6E = TRUE)
+
+  predictions <- PP2A.B56.SLiMs::getITC_2024_06_27_cv(sequences, enforce_6E = TRUE)
 
   RV$data <- data.frame(
       Sequence = sequences,
